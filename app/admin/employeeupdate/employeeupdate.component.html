@@ -1,0 +1,103 @@
+<mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Personal details
+        </mat-panel-title>
+       </mat-expansion-panel-header>
+       <form [formGroup]="firstFormGroup">
+        <mat-form-field>
+        <input matInput placeholder="Name" formControlName="name">
+      </mat-form-field>
+  <br />
+      <mat-label>GENDER</mat-label>
+            <mat-radio-group aria-label="Select an option" #gender formControlName="gender">&nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-radio-button value="male">MALE</mat-radio-button>&nbsp;&nbsp;&nbsp;
+              <mat-radio-button value="female">FEMALE</mat-radio-button>
+            </mat-radio-group>
+            <br />
+            <mat-form-field>
+                <input matInput [matDatepicker]="myDatepicker" placeholder="Date Of Birth" formControlName="dob">
+                <mat-datepicker-toggle matSuffix  [for]="myDatepicker">
+                </mat-datepicker-toggle>
+                <mat-datepicker #myDatepicker></mat-datepicker>
+              </mat-form-field>
+              <br />
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Address" #address formControlName="address">
+              </mat-form-field>
+              <br />
+            </form>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+              Contact details
+            </mat-panel-title>
+           </mat-expansion-panel-header>
+        <form [formGroup]="secondFormGroup">    
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Mail Id" #mailid formControlName="mail">
+              </mat-form-field><br />          
+           <mat-form-field class="example-full-width">
+                <input matInput placeholder="Mobile" #mobile formControlName="mobile">
+              </mat-form-field>     
+            </form>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+              Qualification
+            </mat-panel-title>
+           </mat-expansion-panel-header>
+           <form [formGroup]="qualification">
+            <!-- Course Auto Complete Field -->
+            <mat-form-field class="example-full-width">
+              <input type="text" placeholder="Course" aria-label="Number" matInput [matAutocomplete]="auto" formControlName="course">
+              <mat-autocomplete #auto="matAutocomplete" (optionSelected)='display1($event.option.value)'>
+                <mat-option *ngFor="let option of options;" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+  <br />
+            <mat-form-field class="example-full-width">
+              <input type="text" placeholder="Major" aria-label="Number" matInput [matAutocomplete]="maj" formControlName="major">
+              <mat-autocomplete #maj="matAutocomplete">
+                <mat-option *ngFor="let major of majors" [value]="major">
+                  {{major}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            </form>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Role
+        </mat-panel-title>
+       </mat-expansion-panel-header>
+       <form [formGroup]="fourthFormGroup">        
+        <mat-form-field class="example-full-width">
+          <mat-label>Role</mat-label>
+          <select matNativeControl required formControlName="role">
+            <option value="tl">Team leader</option>
+            <option value="admin">Admin</option>
+            <option value="employee">Employee</option>
+          </select>
+        </mat-form-field>
+        </form>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+      <mat-panel-title>Status</mat-panel-title>
+
+  </mat-expansion-panel-header>
+  <form [formGroup]="fifthFormGroup">          
+    <mat-slide-toggle formControlName="status">Is Active?</mat-slide-toggle>    
+  </form>
+</mat-expansion-panel>
+<div>
+  <button mat-button>Update</button>
+</div>
+</mat-accordion>
